@@ -1,0 +1,53 @@
+1.
+Total Orders = DISTINCTCOUNT('Sales Data'[OrderNumber])
+
+2.
+Total Cost = SUMX('Sales Data','Sales Data'[OrderQuantity]*RELATED(Product_Lookup[ProductCost]))
+
+3.
+All Orders = CALCULATE([Total Orders],ALL('Sales Data'))
+
+4.
+%o Of all orders = [Total Orders]/[All Orders]
+
+5.
+Avg Product Price = AVERAGE(Product_Lookup[ProductPrice])
+
+6.
+Overall Avg Product Price = CALCULATE([Avg Product Price],ALL(Product_Lookup))
+
+7.
+Total Revenue = SUMX('Sales Data','Sales Data'[OrderQuantity]*RELATED(Product_Lookup[ProductPrice]))
+
+8.
+10 days rolling Revenue = CALCULATE([Total Revenue],DATESINPERIOD(Calendar_Lookup[Date],MAX(Calendar_Lookup[Date]),-10,DAY))
+
+9.
+Weekend Orders = CALCULATE([Total Orders],Calendar_Lookup[Weekend/Weekdays]="weekend")
+
+10.
+Total profit = [Total Revenue]-[Total Cost]
+
+11.
+high Ticket Orders = CALCULATE([Total Orders],FILTER(Product_Lookup,Product_Lookup[ProductPrice]>[Overall Avg Product Price]))
+
+12.
+Order Target = [Previous month orders]*1.1
+
+13.
+Previous month orders = CALCULATE([Total Orders],DATEADD(Calendar_Lookup[Date],-1,MONTH))
+
+14.
+Previous Month Revenue = CALCULATE([Total Revenue],DATEADD(Calendar_Lookup[Date],-1,MONTH))
+
+15.
+Quantity Sold = SUM('Sales Data'[OrderQuantity])
+
+16.
+Revenue Target = [Previous Month Revenue]*1.1
+
+17.
+YTD Revenue = CALCULATE([Total Revenue],DATESYTD(Calendar_Lookup[Date]))
+
+18.
+YTD sales = TOTALYTD([Total Revenue],Calendar_Lookup[Date])
