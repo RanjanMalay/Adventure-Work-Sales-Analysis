@@ -15,4 +15,5 @@ with respect to each category subcategory and continent anually.
 The reports Helps with the Insights:- (1) Total Revenue (2)Total order (3)Total Profite (4) Revenue,Order and return changes MOM (5) Total Order by category and subcategory 
 (6) Top Profit by Order, Profit and Revenue (7) Performance based on Continent and country level (8) Product Level Performance (9) What if Parameter
 (10) Customer Level Performance
-Tools-Excel and Power Bi
+
+#Tools-Excel and Power Bi
